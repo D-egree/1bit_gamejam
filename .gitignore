@@ -34,6 +34,17 @@
 # Visual Studio cache directory
 .vs/
 
+# Unity (subfolder project)
+gamejam/Library/
+gamejam/Temp/
+gamejam/Obj/
+gamejam/Logs/
+gamejam/UserSettings/
+
+# Also safe global ignores
+**/Library/
+**/Temp/
+
 # Gradle cache directory
 .gradle/
 
