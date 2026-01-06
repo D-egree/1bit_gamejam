@@ -10,7 +10,7 @@ public abstract class PlayerState
     protected PlayerState(Player player)
     {
         this.player = player;
-        this.anim = player.anim; // ← THIS IS THE KEY
+        this.anim = player.anim;
     }
 
     public virtual void Enter() { }
