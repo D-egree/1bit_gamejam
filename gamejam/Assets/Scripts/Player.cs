@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
 
     private int jumpsRemaining;
 
+    [Header("Ground Check")]
+        public Transform groundCheck;
+        public float groundCheckRadius = 0.1f;
+        public LayerMask groundLayer;
+
     private void Awake()
     {
         jumpsRemaining = maxJumps;
@@ -43,11 +48,16 @@ public class Player : MonoBehaviour
         jumpsRemaining--;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+ private void Update()
+{
+    bool isGrounded = Physics2D.OverlapCircle(
+        groundCheck.position,
+        groundCheckRadius,
+        groundLayer
+    );
+
+    if (isGrounded)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            jumpsRemaining = maxJumps;
-        }
+        jumpsRemaining = maxJumps;
     }
-}
+}}
