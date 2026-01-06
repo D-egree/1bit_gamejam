@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class PlayerState
-{   
+{
     protected Player player;
     protected Animator anim;
-    public PlayerState (Player player)
+
+    protected PlayerState(Player player)
     {
         this.player = player;
+        this.anim = player.anim; // ← THIS IS THE KEY
     }
-    public virtual void Enter() {}
-    public virtual void Exit() {}
-    
-    public virtual void Update(){}
-    public virtual void FixedUpdate(){}
+
+    public virtual void Enter() { }
+    public virtual void Update() { }
+    public virtual void Exit() { }
 }

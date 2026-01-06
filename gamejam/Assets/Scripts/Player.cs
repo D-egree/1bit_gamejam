@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     {
         jumpsRemaining = maxJumps;
         currentStamina = maxStamina;
-        attackState = new PlayerAttackState(this);
+      //  attackState = new PlayerAttackState(this);
         idleState = new PlayerIdleState(this);
     }
 
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        attackPressed = value.isPressed;
+     //   attackPressed = value.isPressed;
         Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
         if (enemy != null)
         {
@@ -144,11 +144,9 @@ public class Player : MonoBehaviour
     }
    public void ChangeState(PlayerState newState)
     {
-        if (currentState != null)
-        {
-            currentState.Exit();
-        }
+        if (currentState !=null)
         currentState.Exit();
+
         currentState = newState;
         currentState.Enter();
     }
