@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     public PlayerState currentState;
     public PlayerIdleState idleState;
     public PlayerJumpState jumpState;
+    public PlayerRunState runState;
+    public SpriteRenderer spriteRenderer;
+
 
 
 
@@ -48,15 +51,19 @@ public class Player : MonoBehaviour
     
     public bool attackPressed;
 
+    public bool IsGrounded { get; private set; }
+    public bool IsMoving => Mathf.Abs(moveInput.x) > 0.01f;
+
 
 
     private void Awake()
     {
         jumpsRemaining = maxJumps;
         currentStamina = maxStamina;
-      //  attackState = new PlayerAttackState(this);
+        //attackState = new PlayerAttackState(this);
         idleState = new PlayerIdleState(this);
         jumpState = new PlayerJumpState(this);
+        runState = new PlayerRunState(this);
     }
 
     private void FixedUpdate()
@@ -79,17 +86,26 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        // Ground check
-        bool isGrounded = Physics2D.OverlapCircle(
-            groundCheck.position,
-            groundCheckRadius,
-            groundLayer
-        );
+ private void Update()
+{
+    IsGrounded = Physics2D.OverlapCircle(
+        groundCheck.position,
+        groundCheckRadius,
+        groundLayer
+    );
 
-        if (isGrounded)
-            jumpsRemaining = maxJumps;
+    if (IsMoving)
+{
+    if (moveInput.x > 0)
+        spriteRenderer.flipX = true;
+    else if (moveInput.x < 0)
+        spriteRenderer.flipX = false;
+}
+
+    if (IsGrounded)
+        jumpsRemaining = maxJumps;
+    currentState?.Update();
+
 
         // Passive stamina regen
         if (!isRunning && currentStamina < maxStamina)
@@ -141,6 +157,7 @@ public class Player : MonoBehaviour
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         jumpsRemaining--;
         jumpPressed = true;
+        anim.SetBool ("IsJumping", true);
     }
     public void Start()
     {
@@ -154,4 +171,5 @@ public class Player : MonoBehaviour
         currentState = newState;
         currentState.Enter();
     }
+    
 }

@@ -16,13 +16,28 @@ public class PlayerIdleState : PlayerState
         anim.SetBool("isIdle", false);
     }
 
-    public override void Update()
+public override void Update()
+{
+    base.Update();
+
+    if (!player.IsGrounded)
     {
-        base.Update();
-        if (player.jumpPressed)
-        {
-            player.jumpPressed = false;
-            player.ChangeState(player.jumpState);
-        }
+        player.ChangeState(player.jumpState);
+        return;
+    }
+
+    if (player.IsMoving)
+    {
+        player.ChangeState(player.runState);
+        return;
+    }
+
+    if (player.jumpPressed)
+    {
+        player.jumpPressed = false;
+        player.ChangeState(player.jumpState);
     }
 }
+
+    }
+

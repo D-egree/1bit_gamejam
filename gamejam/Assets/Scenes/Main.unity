@@ -1943,6 +1943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93cf8e4f53b57148913cb7ff1767e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1350989179}
   attackState: {fileID: 1844530169}
   anim: {fileID: 1350989180}
   speed: 5
