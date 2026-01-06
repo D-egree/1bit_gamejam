@@ -1950,6 +1950,7 @@ MonoBehaviour:
   rb: {fileID: 1844530164}
   moveInput: {x: 0, y: 0}
   isRunning: 0
+  jumpPressed: 0
   damage: 3
   attackRadius: 0.5
   attackPoint: {fileID: 601903441}

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     public PlayerState currentState;
     public PlayerIdleState idleState;
+    public PlayerJumpState jumpState;
 
 
 
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Vector2 moveInput;
     public bool isRunning;
+    public bool jumpPressed;
 
         [Header ("Attack Settings")]
     public int damage;
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
         currentStamina = maxStamina;
       //  attackState = new PlayerAttackState(this);
         idleState = new PlayerIdleState(this);
+        jumpState = new PlayerJumpState(this);
     }
 
     private void FixedUpdate()
@@ -137,6 +140,7 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         jumpsRemaining--;
+        jumpPressed = true;
     }
     public void Start()
     {

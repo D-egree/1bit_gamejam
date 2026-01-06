@@ -15,4 +15,14 @@ public class PlayerIdleState : PlayerState
     {
         anim.SetBool("isIdle", false);
     }
+
+    public override void Update()
+    {
+        base.Update();
+        if (player.jumpPressed)
+        {
+            player.jumpPressed = false;
+            player.ChangeState(player.jumpState);
+        }
+    }
 }
