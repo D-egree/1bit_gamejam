@@ -8,34 +8,34 @@ public class Bird : MonoBehaviour
     public AudioClip clip;
 
     [Header("Animator")]
-    public string attackBoolName = "IsAttacking";
+    public string isAttackingBool = "IsAttacking";
+    public string wantsToAttackBool = "WantsToAttack";
 
     private int playersInRange = 0;
+    private bool waitingForAttackToFinish = false;
 
     void Start()
     {
         Debug.Log("[Bird] Started (2D). Forcing idle.");
-        anim.SetBool(attackBoolName, false);
+        anim.SetBool(isAttackingBool, false);
+        anim.SetBool(wantsToAttackBool, false);
     }
 
-    // ================= PLAYER DETECTION (2D) =================
+    // ================= PLAYER DETECTION =================
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("[Bird] Trigger ENTER by: " + other.name);
-
         if (!other.CompareTag("Player")) return;
 
         playersInRange++;
         Debug.Log("[Bird] Player ENTER range. Count: " + playersInRange);
 
-        anim.SetBool(attackBoolName, true);
-        Debug.Log("[Bird] IsAttacking = TRUE");
+        anim.SetBool(wantsToAttackBool, true);
+        anim.SetBool(isAttackingBool, true);
+        waitingForAttackToFinish = false;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("[Bird] Trigger EXIT by: " + other.name);
-
         if (!other.CompareTag("Player")) return;
 
         playersInRange--;
@@ -44,23 +44,37 @@ public class Bird : MonoBehaviour
         if (playersInRange <= 0)
         {
             playersInRange = 0;
-            anim.SetBool(attackBoolName, false);
-            Debug.Log("[Bird] IsAttacking = FALSE");
+            anim.SetBool(wantsToAttackBool, false);
+            waitingForAttackToFinish = true;
+        }
+    }
+
+    void Update()
+    {
+        // If player left and we're waiting to finish the current attack
+        if (!waitingForAttackToFinish) return;
+
+        AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+
+        // Are we currently in the attack state?
+        if (!state.IsName("BirdStaticAttack")) return;
+
+        // Has the current loop finished?
+        if (state.normalizedTime >= 1f)
+        {
+            Debug.Log("[Bird] Attack finished → going IDLE");
+            anim.SetBool(isAttackingBool, false);
+            waitingForAttackToFinish = false;
         }
     }
 
     // ================= AUDIO =================
-    // Call this from an Animation Event
+    // Called from Animation Event
     public void PlaySound()
     {
         if (audioSource != null && clip != null)
         {
             audioSource.PlayOneShot(clip);
-            Debug.Log("[Bird] Attack sound played");
-        }
-        else
-        {
-            Debug.LogWarning("[Bird] AudioSource or Clip missing!");
         }
     }
 }
