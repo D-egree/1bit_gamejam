@@ -1,14 +1,31 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements.Experimental;
+using System;
+using UnityEditor;
 
 public class Player : MonoBehaviour
 {
+    public PlayerState currentState;
+    public PlayerIdleState idleState;
+
+
+
+
+    public PlayerAttackState attackState;
+    public Animator anim;
     [Header("Movement")]
     public float speed = 5f;
     public float runSpeed = 8f;
     public Rigidbody2D rb;
     public Vector2 moveInput;
     public bool isRunning;
+
+        [Header ("Attack Settings")]
+    public int damage;
+    public float attackRadius = .5f;
+    public Transform attackPoint;
+    public LayerMask enemyLayer;
 
     [Header("Stamina")]
     public float maxStamina = 100f;
@@ -26,11 +43,17 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.1f;
     public LayerMask groundLayer;
+    
+    public bool attackPressed;
+
+
 
     private void Awake()
     {
         jumpsRemaining = maxJumps;
         currentStamina = maxStamina;
+        attackState = new PlayerAttackState(this);
+        idleState = new PlayerIdleState(this);
     }
 
     private void FixedUpdate()
@@ -92,6 +115,17 @@ public class Player : MonoBehaviour
         isRunning = context.ReadValueAsButton();
     }
 
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        attackPressed = value.isPressed;
+        Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
+        if (enemy != null)
+        {
+        enemy.gameObject.GetComponent<Health>().ChangeHealth(-damage);
+        Debug.Log("Attacked");
+        }
+    }
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!context.performed)
@@ -103,5 +137,19 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         jumpsRemaining--;
+    }
+    public void Start()
+    {
+        ChangeState(idleState);
+    }
+   public void ChangeState(PlayerState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.Exit();
+        }
+        currentState.Exit();
+        currentState = newState;
+        currentState.Enter();
     }
 }
