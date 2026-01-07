@@ -2074,6 +2074,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1350989179}
   attackState: {fileID: 1844530169}
   anim: {fileID: 1350989180}
+  health: 0
+  maxHealth: 6
   speed: 5
   runSpeed: 8
   rb: {fileID: 1844530164}
@@ -3801,6 +3803,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4034326163504056504, guid: 782b17512b42194458598b2e630414b9, type: 3}
+      propertyPath: playerScript
+      value: 
+      objectReference: {fileID: 1844530167}
     - target: {fileID: 9069897076317792286, guid: 782b17512b42194458598b2e630414b9, type: 3}
       propertyPath: m_Name
       value: Static Bird
