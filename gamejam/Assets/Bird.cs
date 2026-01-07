@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    public Player playerScript;
     [Header("References")]
     public Animator anim;
     public AudioSource audioSource;
@@ -32,6 +33,7 @@ public class Bird : MonoBehaviour
         anim.SetBool(wantsToAttackBool, true);
         anim.SetBool(isAttackingBool, true);
         waitingForAttackToFinish = false;
+        playerScript.TakeDamage(1);
     }
 
     void OnTriggerExit2D(Collider2D other)

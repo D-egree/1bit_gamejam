@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UIElements.Experimental;
 using System;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class Player : MonoBehaviour
 
     public PlayerAttackState attackState;
     public Animator anim;
+    [Header("Health")]
+    public int health;
+    public int maxHealth = 6;
     [Header("Movement")]
     public float speed = 5f;
     public float runSpeed = 8f;
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        health = maxHealth;
         jumpsRemaining = maxJumps;
         currentStamina = maxStamina;
         //attackState = new PlayerAttackState(this);
@@ -171,5 +176,12 @@ public class Player : MonoBehaviour
         currentState = newState;
         currentState.Enter();
     }
-    
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        }
+    }
 }
