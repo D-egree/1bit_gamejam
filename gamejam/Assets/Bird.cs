@@ -33,7 +33,7 @@ public class Bird : MonoBehaviour
         anim.SetBool(wantsToAttackBool, true);
         anim.SetBool(isAttackingBool, true);
         waitingForAttackToFinish = false;
-        playerScript.TakeDamage(1);
+      
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -77,6 +77,21 @@ public class Bird : MonoBehaviour
         if (audioSource != null && clip != null)
         {
             audioSource.PlayOneShot(clip);
+        }
+    }
+    public void BirdAttack()
+    {
+        if (playersInRange > 0)
+        { playerScript.TakeDamage(1);
+            playerScript.KBCounter = playerScript.KBTotalTime;
+            if (GetComponent<Collider2D>().transform.position.x <= transform.position.x)
+            {
+                playerScript.KnockFromRight = true;
+            }
+            if (GetComponent<Collider2D>().transform.position.x > transform.position.x)
+            {
+                playerScript.KnockFromRight = false;
+            }
         }
     }
 }

@@ -47,6 +47,11 @@ public class Player : MonoBehaviour
     public float jumpForce = 7f;
     public int maxJumps = 2;
     private int jumpsRemaining;
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+
+    public bool KnockFromRight;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -73,9 +78,24 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Movement
-        float currentSpeed = (isRunning && canRun) ? runSpeed : speed;
-        rb.velocity = new Vector2(moveInput.x * currentSpeed, rb.velocity.y);
+        if (KBCounter <= 0)
+        {
+            // Movement
+            float currentSpeed = (isRunning && canRun) ? runSpeed : speed;
+            rb.velocity = new Vector2(moveInput.x * currentSpeed, rb.velocity.y);
+        }
+        else
+        { 
+        if(KnockFromRight == true)
+            {
+                rb.velocity = new Vector2(-KBForce, KBForce);
+            }
+            if (KnockFromRight == false)
+            {
+                rb.velocity = new Vector2(KBForce, KBForce);
+            }
+            KBCounter -= Time.deltaTime;
+        }
 
         // Drain stamina while running
         if (isRunning && canRun)
