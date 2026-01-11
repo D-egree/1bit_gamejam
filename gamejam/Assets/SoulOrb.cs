@@ -15,6 +15,9 @@ public class SoulOrb : MonoBehaviour
     public float attractionStrength = 6f;
     public float maxAttractionSpeed = 7f;
     public float attractionSmoothness = 6f;
+    private float attractionDelay = 1f;
+private float attractionStartTime;
+private bool canAttract;
 
     [Header("Absorption")]
     public float absorptionDistance = 0.25f;
@@ -36,20 +39,25 @@ public class SoulOrb : MonoBehaviour
     }
 
     void Update()
+{
+    if (attracted && !canAttract && Time.time >= attractionStartTime + attractionDelay)
     {
-        if (absorbing && player != null)
-        {
-            Absorb();
-        }
-        else if (attracted && player != null)
-        {
-            AttractToPlayer();
-        }
-        else
-        {
-            IdleFloat();
-        }
+        canAttract = true;
     }
+
+    if (absorbing && player != null)
+    {
+        Absorb();
+    }
+    else if (attracted && canAttract && player != null)
+    {
+        AttractToPlayer();
+    }
+    else
+    {
+        IdleFloat();
+    }
+}
 
     void IdleFloat()
     {
@@ -124,14 +132,17 @@ public class SoulOrb : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Player"))
     {
-        if (other.CompareTag("Player"))
-        {
-            player = other.transform;
-            attracted = true;
-        }
+        player = other.transform;
+        attracted = true;
+        canAttract = false;
+        attractionStartTime = Time.time;
     }
+}
+
 
     void OnTriggerExit2D(Collider2D other)
     {

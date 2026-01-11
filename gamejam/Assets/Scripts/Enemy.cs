@@ -6,6 +6,11 @@ public class Enemy : MonoBehaviour
 {
  public Animator animator;
  public Health health;
+
+
+    void Awake()
+    {
+    }
     private void OnEnable()
     {
         health.OnDamaged += HandleDamage;

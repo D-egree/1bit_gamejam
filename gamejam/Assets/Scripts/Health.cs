@@ -1,32 +1,47 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-
     public event Action OnDamaged;
     public event Action OnDeath;
+
+    public int maxHealth = 5;
     public int health;
-    public int maxHealth;
-    // Start is called before the first frame update
+
+    public int orbsToSpawn = 1;
+    public GameObject orb;
+
     void Start()
     {
         health = maxHealth;
     }
 
-public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount)
     {
         health += amount;
-        if(health >maxHealth)
-         health = maxHealth;
+        health = Mathf.Clamp(health, 0, maxHealth);
 
-        else if (health <= 0)
-            OnDeath?.Invoke();
+        if (health <= 0)
+        {
+            Die();
+        }
         else if (amount < 0)
+        {
             OnDamaged?.Invoke();
-            
-        
+        }
+    }
+
+    void Die()
+    {
+        // Spawn orbs FIRST
+        for (int i = 0; i < orbsToSpawn; i++)
+        {
+            Instantiate(orb, transform.position, Quaternion.identity);
+        }
+
+        OnDeath?.Invoke();
+
+        Destroy(gameObject);
     }
 }
