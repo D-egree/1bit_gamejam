@@ -198,10 +198,56 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage(int amount)
     {
+          StartCoroutine(FlashWhite());
+        if (amount != 0) GetComponent<AudioSource>().Play();
         health -= amount;
+      
         if (health <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
         }
     }
+    private System.Collections.IEnumerator FlashWhite()
+{
+        spriteRenderer.enabled = false;
+    yield return null;
+    yield return null;
+    yield return null;
+    yield return null;
+        yield return null;
+    yield return null;
+    yield return null;
+    yield return null;
+        yield return null;
+    yield return null;
+    yield return null;
+    yield return null;
+    spriteRenderer.enabled = true;
+        yield return null;
+    yield return null;
+    yield return null;
+    yield return null;
+        yield return null;
+    yield return null;
+    yield return null;
+    yield return null;
+        yield return null;
+    yield return null;
+    yield return null;
+    yield return null;
+            spriteRenderer.enabled = false;
+    yield return null;
+    yield return null;
+    yield return null;
+    yield return null;
+        yield return null;
+    yield return null;
+    yield return null;
+    yield return null;
+        yield return null;
+    yield return null;
+    yield return null;
+    yield return null;
+    spriteRenderer.enabled = true;
+}
 }

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BirdStaticAttack
+  m_Name: FloatyAnimtest
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,19 +21,17 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: e9157819f091ee145913ecea7a835205, type: 3}
-    - time: 0.16666667
-      value: {fileID: 21300000, guid: 356a7aadfa8a7e34b8177538487aea8b, type: 3}
+      value: {fileID: 21300000, guid: 5c4a35206ff5ae34a8bb5422f982cfea, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: 81c802cf7d35bd94c95238fe03c99239, type: 3}
-    - time: 0.41666666
-      value: {fileID: 21300000, guid: 832429d8718323a4b9304d9fbb7a0980, type: 3}
+      value: {fileID: 21300000, guid: 4a9f0261d3b9acd4e9c472669d7e5fcf, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: ee370a6b7f9b83c4d9c17dc7aa364f13, type: 3}
-    - time: 0.6666667
-      value: {fileID: 21300000, guid: 7cf4fd0d15e037e40bdf9275bb9b5e24, type: 3}
+      value: {fileID: 21300000, guid: f73bae55d00ccda47bac5843fa41e6b7, type: 3}
     - time: 0.75
-      value: {fileID: 21300000, guid: e9157819f091ee145913ecea7a835205, type: 3}
+      value: {fileID: 21300000, guid: f73bae55d00ccda47bac5843fa41e6b7, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 4a9f0261d3b9acd4e9c472669d7e5fcf, type: 3}
+    - time: 1.25
+      value: {fileID: 21300000, guid: 5c4a35206ff5ae34a8bb5422f982cfea, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -56,19 +54,18 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: e9157819f091ee145913ecea7a835205, type: 3}
-    - {fileID: 21300000, guid: 356a7aadfa8a7e34b8177538487aea8b, type: 3}
-    - {fileID: 21300000, guid: 81c802cf7d35bd94c95238fe03c99239, type: 3}
-    - {fileID: 21300000, guid: 832429d8718323a4b9304d9fbb7a0980, type: 3}
-    - {fileID: 21300000, guid: ee370a6b7f9b83c4d9c17dc7aa364f13, type: 3}
-    - {fileID: 21300000, guid: 7cf4fd0d15e037e40bdf9275bb9b5e24, type: 3}
-    - {fileID: 21300000, guid: e9157819f091ee145913ecea7a835205, type: 3}
+    - {fileID: 21300000, guid: 5c4a35206ff5ae34a8bb5422f982cfea, type: 3}
+    - {fileID: 21300000, guid: 4a9f0261d3b9acd4e9c472669d7e5fcf, type: 3}
+    - {fileID: 21300000, guid: f73bae55d00ccda47bac5843fa41e6b7, type: 3}
+    - {fileID: 21300000, guid: f73bae55d00ccda47bac5843fa41e6b7, type: 3}
+    - {fileID: 21300000, guid: 4a9f0261d3b9acd4e9c472669d7e5fcf, type: 3}
+    - {fileID: 21300000, guid: 5c4a35206ff5ae34a8bb5422f982cfea, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.76666665
+    m_StopTime: 1.2666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -87,18 +84,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.4
-    functionName: PlaySound
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.41666666
-    functionName: BirdAttack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
