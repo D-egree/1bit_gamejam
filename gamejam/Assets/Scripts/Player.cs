@@ -115,6 +115,15 @@ public class Player : MonoBehaviour
 
         if (IsGrounded)
             jumpsRemaining = maxJumps;
+            if (moveInput.x > 0)
+        spriteRenderer.flipX = true;
+    else if (moveInput.x < 0)
+        spriteRenderer.flipX = false;
+
+    // Move attackPoint based on flip
+    Vector3 attackPos = attackPoint.localPosition;
+    attackPos.x = spriteRenderer.flipX ? 0.75f : -0.75f;
+    attackPoint.localPosition = attackPos;
 
         currentState?.Update();
 
