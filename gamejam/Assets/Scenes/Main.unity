@@ -472,12 +472,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1980, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1547,7 +1547,7 @@ RectTransform:
   m_GameObject: {fileID: 527142337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 612066331}
@@ -1573,7 +1573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.047169805, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1736,6 +1736,8 @@ MonoBehaviour:
   health: 0
   orbsToSpawn: 1
   orb: {fileID: 4955110524152288839, guid: 69af457d9b1f50d4299dc23e01a6af4d, type: 3}
+  endGame: 0
+  endGameUI: {fileID: 0}
 --- !u!1 &601903440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,7 +1826,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You WIn!
+  m_text: To be continued....
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1887,7 +1889,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: -48.67971, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2579,6 +2581,8 @@ MonoBehaviour:
   health: 0
   orbsToSpawn: 1
   orb: {fileID: 4955110524152288839, guid: 69af457d9b1f50d4299dc23e01a6af4d, type: 3}
+  endGame: 1
+  endGameUI: {fileID: 527142337}
 --- !u!61 &1100859715
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3509,7 +3513,7 @@ RectTransform:
   m_GameObject: {fileID: 1444498408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 371049041}
@@ -6751,7 +6755,11 @@ PrefabInstance:
       objectReference: {fileID: 4955110524152288839, guid: 69af457d9b1f50d4299dc23e01a6af4d, type: 3}
     - target: {fileID: 6566277098288543822, guid: 2be12891c5ce73746b57ed6dad49e4a5, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566277098288543822, guid: 2be12891c5ce73746b57ed6dad49e4a5, type: 3}
+      propertyPath: orbsToSpawn
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7189275614628944027, guid: 2be12891c5ce73746b57ed6dad49e4a5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7390,7 +7398,7 @@ RectTransform:
   m_GameObject: {fileID: 1848747177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1526925581}
@@ -7461,6 +7469,8 @@ MonoBehaviour:
   health: 0
   orbsToSpawn: 1
   orb: {fileID: 4955110524152288839, guid: 69af457d9b1f50d4299dc23e01a6af4d, type: 3}
+  endGame: 0
+  endGameUI: {fileID: 0}
 --- !u!70 &1903527661
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -16199,6 +16209,10 @@ PrefabInstance:
     - target: {fileID: 6566277098288543822, guid: 2be12891c5ce73746b57ed6dad49e4a5, type: 3}
       propertyPath: maxHealth
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566277098288543822, guid: 2be12891c5ce73746b57ed6dad49e4a5, type: 3}
+      propertyPath: orbsToSpawn
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7189275614628944027, guid: 2be12891c5ce73746b57ed6dad49e4a5, type: 3}
       propertyPath: m_LocalPosition.x
