@@ -8,7 +8,14 @@ public class PauseScreen : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject PauseMenuUI;
+    public GameObject StartMenu;
     
+    void Start()
+    {
+        GameIsPaused = true;
+        Time.timeScale = 0f;
+        StartMenu.SetActive(true);
+    }
     void Update()
     { 
     if (Input.GetKeyDown(KeyCode.Escape))
@@ -30,10 +37,13 @@ public class PauseScreen : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
-    
+
     public void Resume()
-    { 
-    
+    {
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        Destroy(StartMenu);
     }
     
     public void RestartButton()
