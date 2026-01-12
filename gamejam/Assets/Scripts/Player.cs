@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
     {
         if (KBCounter <= 0)
         {
-            // Movement
+          
             float currentSpeed = (isRunning && canRun) ? runSpeed : speed;
             rb.velocity = new Vector2(moveInput.x * currentSpeed, rb.velocity.y);
         }

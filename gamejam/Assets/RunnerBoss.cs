@@ -5,6 +5,11 @@ public class RunnerBoss : MonoBehaviour
     public enum State { Patrol, Charge, Stunned }
     public State currentState;
 
+    [Header("Attack")]
+public int damage = 1;
+public float hitCooldown = 0.4f; 
+private float hitTimer;
+
     [Header("Movement")]
     public float patrolSpeed = 2f;
     public float chargeSpeed = 7f;
@@ -53,6 +58,9 @@ public class RunnerBoss : MonoBehaviour
 
     void Update()
     {
+        if (hitTimer > 0f)
+    hitTimer -= Time.deltaTime;
+
         switch (currentState)
         {
             case State.Patrol:
@@ -70,6 +78,35 @@ public class RunnerBoss : MonoBehaviour
                 
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+{
+    if (hitTimer > 0f) return;
+
+    if (!other.CompareTag("Player")) return;
+
+    // Optional: only damage while charging
+    if (currentState != State.Charge) return;
+
+    Player playerScript = other.GetComponent<Player>();
+    if (playerScript == null) return;
+
+    // Deal damage
+    playerScript.TakeDamage(damage);
+    playerScript.KBCounter = playerScript.KBTotalTime;
+
+    // Knockback direction logic (matches your BirdAttack example)
+    if (other.transform.position.x <= transform.position.x)
+    {
+        playerScript.KnockFromRight = true;
+    }
+    else
+    {
+        playerScript.KnockFromRight = false;
+    }
+
+    hitTimer = hitCooldown;
+}
 
     void FixedUpdate()
 {

@@ -13,8 +13,8 @@ public class PauseScreen : MonoBehaviour
     void Start()
     {
         GameIsPaused = true;
-        Time.timeScale = 0f;
-        StartMenu.SetActive(true);
+
+        StartMenu.SetActive(false);
     }
     void Update()
     { 
