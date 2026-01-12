@@ -15,7 +15,7 @@ public class SoulOrb : MonoBehaviour
     public float attractionStrength = 6f;
     public float maxAttractionSpeed = 7f;
     public float attractionSmoothness = 6f;
-    private float attractionDelay = 1f;
+    private float attractionDelay = 0.5f;
 private float attractionStartTime;
 private bool canAttract;
 
