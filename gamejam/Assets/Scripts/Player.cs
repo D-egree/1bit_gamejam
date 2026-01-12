@@ -53,6 +53,9 @@ public class Player : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public LayerMask groundLayer;
 
+    [Header("UI")]
+    public GameObject GameOverScreen;
+
     public bool IsGrounded { get; private set; }
     public bool IsMoving => Mathf.Abs(moveInput.x) > 0.01f;
 
@@ -217,7 +220,8 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameOverScreen.SetActive(true);
+            Destroy(gameObject);
         }
     }
 
